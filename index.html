@@ -83,6 +83,28 @@ a{color:var(--accent2);text-decoration:none}
 /* Toast */
 .toast{position:fixed;bottom:2rem;right:2rem;background:var(--surface2);color:var(--text);padding:0.75rem 1.25rem;border-radius:var(--radius);border:1px solid var(--border);font-size:0.85rem;box-shadow:var(--shadow);transform:translateY(100px);opacity:0;transition:all 0.3s;z-index:999}
 .toast.show{transform:translateY(0);opacity:1}
+.pro-section{position:relative;border-radius:var(--radius);overflow:hidden;cursor:pointer;margin:0 1.5rem 1rem}
+.pro-mock{padding:16px;background:var(--surface);border:1px solid var(--border);border-radius:var(--radius);filter:blur(3px);-webkit-filter:blur(3px);pointer-events:none;user-select:none;opacity:.7}
+.pro-mock-title{font-size:12px;text-transform:uppercase;color:var(--text2);margin-bottom:8px;letter-spacing:.5px;font-weight:600}
+.pro-mock-item{background:rgba(255,255,255,.05);border-radius:4px;padding:6px 10px;margin-bottom:5px;font-size:12px;color:var(--text2)}
+.pro-lock-overlay{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;background:rgba(0,0,0,.45);border-radius:var(--radius);z-index:10;transition:background .2s}
+.pro-section:hover .pro-lock-overlay{background:rgba(0,0,0,.55)}
+.pro-lock-icon{font-size:32px;margin-bottom:6px}
+.pro-lock-text{font-size:13px;color:#fff;font-weight:600}
+.pro-lock-sub{font-size:11px;color:#aaa;margin-top:2px}
+#proModal{display:none;position:fixed;inset:0;background:rgba(0,0,0,.7);z-index:1000;align-items:center;justify-content:center}
+#proModal.show{display:flex}
+.pro-modal{background:var(--bg2);border:1px solid var(--border);border-radius:16px;padding:32px;max-width:420px;width:90%;text-align:center}
+.pro-modal h2{font-size:20px;margin-bottom:4px;color:var(--accent)}
+.pro-modal .pro-price{font-size:32px;font-weight:700;color:#fff;margin:12px 0}
+.pro-modal .pro-features{text-align:left;margin:16px 0;padding:0;list-style:none}
+.pro-modal .pro-features li{padding:8px 0;border-bottom:1px solid rgba(255,255,255,.08);font-size:14px;color:#ccc;display:flex;align-items:center;gap:8px}
+.pro-modal .pro-features li:last-child{border-bottom:none}
+.pro-modal .pro-features li::before{content:'✓';color:var(--green);font-weight:700;font-size:16px}
+.pro-btn-upgrade{display:block;width:100%;padding:14px;background:linear-gradient(135deg,var(--accent),var(--purple));color:#fff;border:none;border-radius:10px;font-size:16px;font-weight:700;cursor:pointer;text-decoration:none;margin-top:16px;text-align:center;transition:opacity .2s}
+.pro-btn-upgrade:hover{opacity:.9}
+.pro-btn-later{display:block;width:100%;padding:10px;background:transparent;color:#888;border:none;font-size:14px;cursor:pointer;margin-top:8px}
+.pro-btn-later:hover{color:#ccc}
 </style>
 </head>
 <body>
@@ -120,6 +142,24 @@ a{color:var(--accent2);text-decoration:none}
 </main>
 
 <footer class="footer">AI XML Formatter — Free online XML formatting, validation &amp; syntax highlighting. No data leaves your browser.</footer>
+
+<div class="pro-section" onclick="document.getElementById('proModal').classList.add('show')">
+<div class="pro-mock">
+<div class="pro-mock-title">&#128269; XPath Query</div>
+<div class="pro-mock-item">&#9654; //book[@category='fiction']/title</div>
+<div class="pro-mock-item">&#9654; 2 results found</div>
+<div class="pro-mock-title" style="margin-top:10px">&#9989; Schema Validation</div>
+<div class="pro-mock-item">&#9654; Validate against XSD / DTD</div>
+<div class="pro-mock-item">&#9654; Auto-detect schema</div>
+<div class="pro-mock-title" style="margin-top:10px">&#128230; Batch Processing</div>
+<div class="pro-mock-item">&#9654; Format multiple XML files at once</div>
+</div>
+<div class="pro-lock-overlay">
+<div class="pro-lock-icon">&#128274;</div>
+<div class="pro-lock-text">Pro Features</div>
+<div class="pro-lock-sub">Click to unlock</div>
+</div>
+</div>
 
 <div class="toast" id="toast"></div>
 
@@ -457,6 +497,20 @@ a{color:var(--accent2);text-decoration:none}
   }
 })();
 </script>
+<div id="proModal" onclick="if(event.target===this)this.classList.remove('show')">
+<div class="pro-modal">
+<h2>&#128640; XML Formatter Pro</h2>
+<div class="pro-price">$9</div>
+<ul class="pro-features">
+<li>XPath Query — search and extract XML nodes instantly</li>
+<li>Schema Validation — validate against XSD &amp; DTD</li>
+<li>Batch Processing — format multiple XML files at once</li>
+<li>Priority support &amp; all future updates</li>
+</ul>
+<a href="https://feifeicch.gumroad.com/l/ai-xml-formatter-pro" target="_blank" class="pro-btn-upgrade">Upgrade to Pro — $9</a>
+<button class="pro-btn-later" onclick="event.stopPropagation();document.getElementById('proModal').classList.remove('show')">Maybe later</button>
+</div>
+</div>
 <script src="https://alwingulla.com/88/tag.min.js" data-zone="130747" async data-cfasync="false"></script>
 </body>
 </html>
